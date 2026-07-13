@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumyaranjan Muduli | Offensive Security Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="hacker-crosshair">
+        <div class="ch-line horizontal"></div>
+        <div class="ch-line vertical"></div>
+    </div>
+    <div id="particle-container"></div>
+
+    <div id="terminal-loader">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">root@muduli_sec:~# ./exploit_payload --verbose</span>
+            <div id="countdown-timer">EST: 45s</div>
+        </div>
+        <div class="terminal-body" id="boot-logs"></div>
+
+        <div id="fake-breach-overlay" class="hidden-layer">
+            <div class="alert-box">
+                <div class="alert-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                <h2>CRITICAL ENVIRONMENT ERROR</h2>
+                <p>KERNEL PANIC: UNEXPECTED SECURITY STACK OVERFLOW DETECTED</p>
+                <div class="progress-bar-container"><div class="progress-bar-fill"></div></div>
+                <div class="alert-status">ISOLATING DISK SEGMENTS...</div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="cyber-ambient" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <audio id="alarm-buzzer" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg"></audio>
+
+    <div class="scanlines"></div>
+    <canvas id="cyber-canvas"></canvas>
+
+    <div id="main-content" class="hidden">
+        
+        <header>
+            <div class="logo">MUDULI_SEC<span>{</span><span id="bg-state">MATRIX</span><span>}</span></div>
+            <nav id="nav-menu">
+                <a href="#home" class="active">// root</a>
+                <a href="#about">// identity</a>
+                <a href="#skills">// assets</a>
+                <a href="#threat-map-section">// global_matrix</a>
+                <a href="#terminal-section">// console</a>
+                <a href="#credentials">// vault</a>
+                <a href="#contact">// transmission</a>
+            </nav>
+            <div id="audio-toggle" class="audio-node active"><i class="fas fa-volume-high"></i> AUDIO: ON</div>
+            <div class="toggle-menu" id="menu-btn"><i class="fas fa-bars"></i></div>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="status-tag"><span class="blink">●</span> SECURITY STATUS: HARDENED</div>
+                <h1>Soumyaranjan Muduli</h1>
+                <h2>Subsystem: <span class="typing-text"></span></h2>
+                <p>Proactive Defensive Engineer & Full-Stack Developer. Specialized in vulnerability assessments, anti-tampering logic deployment, and cryptographically secure architectures.</p>
+                
+                <div class="metrics-container">
+                    <div class="metric-box">
+                        <div class="metric-val" data-target="98">0</div>
+                        <div class="metric-lbl">THM RANK %</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-val" data-target="42">0</div>
+                        <div class="metric-lbl">MACHINES ROOTED</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-val" data-target="115">0</div>
+                        <div class="metric-lbl">BUGS MITIGATED</div>
+                    </div>
+                </div>
+
+                <div class="social-nodes">
+                    <a href="https://github.com/soumyaranjanmuduli234-pixel" target="_blank" class="node"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://instagram.com/tm_soumya_45" target="_blank" class="node"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="mailto:soumyaranjanmuduli234@gmail.com" class="node"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="cyber-heading"><span>01.</span> NODE_IDENTITY</h2>
+            <div class="about-grid">
+                <div class="cyber-card-large">
+                    <h3>Operational Parameters</h3>
+                    <p>I cross-examine web architectures from an offensive perspective. Combining the skillsets of a Certified Ethical Hacker and a Full-Stack Web Developer, I establish system integrity from the very first line of code written, protecting modern cloud apps from exploit payloads.</p>
+                </div>
+                <div class="cyber-card-metadata">
+                    <h3>System Registry</h3>
+                    <div class="meta-item"><span class="lbl">ORIGIN:</span> <span class="val">Indian / Hindu</span></div>
+                    <div class="meta-item"><span class="lbl">LOC_COORD:</span> <span class="val">Khanti, Kadaba, Khordha, Odisha</span></div>
+                    <div class="meta-item"><span class="lbl">SYSTEM_INTEGRITY:</span> <span class="val text-green">ANTI-TAMPER LOCK ON</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="cyber-heading"><span>02.</span> CORE_ASSETS & SKILLS_RADAR</h2>
+            <div class="skills-grid">
+                <div class="cyber-card">
+                    <div class="card-icon"><i class="fas fa-user-secret"></i></div>
+                    <h3>Cyber Security</h3>
+                    <ul>
+                        <li>Penetration Testing</li>
+                        <li>Source Code Auditing</li>
+                        <li>Reverse Engineering</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card radar-box">
+                    <h3>Asset Vector Profile</h3>
+                    <div class="radar-container">
+                        <svg viewBox="0 0 200 200" class="radar-chart">
+                            <polygon points="100,20 176,75 147,165 53,165 24,75" class="grid-ring"/>
+                            <polygon points="100,50 151,87 131,145 69,145 49,87" class="grid-ring"/>
+                            <polygon points="100,80 125,99 115,125 85,125 75,99" class="grid-ring"/>
+                            <polygon points="100,30 170,75 140,155 60,140 35,75" class="radar-data"/>
+                            <text x="100" y="15" text-anchor="middle">SEC</text>
+                            <text x="185" y="75" text-anchor="start">WEB</text>
+                            <text x="155" y="180" text-anchor="middle">API</text>
+                            <text x="45" y="180" text-anchor="middle">DB</text>
+                            <text x="15" y="75" text-anchor="end">REVERSING</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="cyber-card">
+                    <div class="card-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>Full-Stack Assets</h3>
+                    <ul>
+                        <li>Secure API Endpoints</li>
+                        <li>Database Hardening</li>
+                        <li>Asynchronous JS Logic</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="threat-map-section" class="threat-map-section">
+            <h2 class="cyber-heading"><span>03.</span> LIVE_CYBER_THREAT_MAP (SIMULATION)</h2>
+            <div class="map-wrapper">
+                <canvas id="threat-map-canvas"></canvas>
+                <div class="threat-overlay-feed" id="threat-feed-box">
+                    <div class="feed-title"><i class="fas fa-circle-exclamation blink"></i> INCOMING FIREWALL PACKETS</div>
+                    <div class="feed-content" id="live-threat-feed"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terminal-section" class="terminal-section">
+            <h2 class="cyber-heading"><span>04.</span> ADVANCED_SHELL_CONSOLE</h2>
+            
+            <div class="terminal-layout-grid">
+                <div class="interactive-terminal">
+                    <div class="console-top">
+                        <span class="console-dot red"></span>
+                        <span class="console-dot yellow"></span>
+                        <span class="console-dot green"></span>
+                        <span class="console-txt">live_shell@muduli_sec:~</span>
+                    </div>
+                    <div class="console-output" id="console-display">
+                        <div>Type <span class="text-green">'help'</span> to execute diagnostic mapping protocols. Try <span class="text-green">'nmap'</span> or <span class="text-green">'decrypt'</span>.</div>
+                    </div>
+                    <div class="console-input-row">
+                        <span class="prompt">guest@muduli_sec:~$</span>
+                        <input type="text" id="console-input" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="firewall-panel">
+                    <div class="firewall-top"><i class="fas fa-terminal"></i> LIVE_WALL_FIREWALL_STREAM</div>
+                    <div class="firewall-logs" id="live-firewall-logs"></div>
+                </div>
+            </div>
+
+            <div id="secret-game-container" class="hidden-layer">
+                <div class="game-box">
+                    <h3><i class="fas fa-key"></i> CRYPTOGRAPHIC DECIPHER MODULE ENCRYPTED</h3>
+                    <p>Decrypt the binary cipher sequence sequence string below to bypass internal security locks:</p>
+                    <div class="cipher-string" id="target-cipher">MUDULI_SEC_2026</div>
+                    <input type="text" id="game-guess-input" placeholder="Enter plain text code key...">
+                    <button class="btn" onclick="checkSecretCipherKey()">Verify Hash Override</button>
+                    <div id="game-status-output"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="credentials" class="credentials">
+            <h2 class="cyber-heading"><span>05.</span> SECURE_VAULT</h2>
+            <div class="cred-container">
+                <div class="cyber-card secure-frame">
+                    <div class="secure-badge"><i class="fas fa-shield-halved"></i> AUDITED & VERIFIED</div>
+                    <img src="certificate.jpg" onerror="this.src='https://placehold.co/600x420/04070c/00ff66?text=CEH+V12+CERTIFICATE+SECURED'" alt="Certified Ethical Hacker" class="cert-img">
+                    <div class="cert-details">
+                        <h3>Certified Ethical Hacker</h3>
+                        <p>Defensive perimeter design verification, threat profiling, and exploit countermeasures mitigation framework certification.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="cyber-heading"><span>06.</span> SECURE_TRANSMISSION</h2>
+            <div class="contact-split">
+                <div class="comms-panel">
+                    <h3>Direct Comms</h3>
+                    <div class="comms-item"><i class="fas fa-phone"></i> <span>+91 7325996774</span></div>
+                    <div class="comms-item"><i class="fas fa-envelope"></i> <span>soumyaranjanmuduli234@gmail.com</span></div>
+                    <div class="comms-item"><i class="fas fa-location-dot"></i> <span>Khordha, Odisha, India</span></div>
+                </div>
+                <div class="form-container">
+                    <form id="cyber-contact-form">
+                        <div class="input-group">
+                            <label>_IDENTITY:</label>
+                            <input type="text" id="form-name" required placeholder="Identity/Agency">
+                        </div>
+                        <div class="input-group">
+                            <label>_ROUTING_ENDPOINT:</label>
+                            <input type="email" id="form-email" required placeholder="contact@domain.com">
+                        </div>
+                        <div class="input-group">
+                            <label>_ENCRYPTED_PAYLOAD:</label>
+                            <textarea id="form-msg" rows="3" required placeholder="Type payload bits here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Inject Data Packet</button>
+                    </form>
+                    <div id="form-terminal-output" class="hidden-log"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>// Anti-Tamper Pipeline Active. System Secure &copy; 2026 | Soumyaranjan Muduli</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
