@@ -126,11 +126,40 @@ function runHyperSpeedNmapScan(frameCount) {
                 triggerMetricsCounter();
                 initThreatMap();
                 startFirewallStreaming();
+                initThemeEngine(); // Active theme state compiler
             }, 800);
         }, 500);
     }
 }
 window.addEventListener('DOMContentLoaded', runStandardBoot);
+
+// NEW FEATURE: DARK / LIGHT ENGINE CONTROLLER
+function initThemeEngine() {
+    const themeBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('muduli-sys-theme') || 'dark';
+    
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('muduli-sys-theme', targetTheme);
+        updateThemeIcon(targetTheme);
+        printConsoleLine(`SYSTEM: Core graphical environment toggled to [${targetTheme.toUpperCase()}_MODE]`, '#00f2fe');
+    });
+}
+
+function updateThemeIcon(theme) {
+    const icon = document.querySelector('#theme-toggle i');
+    if (theme === 'light') {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
+    }
+}
 
 // 4. AUDIO TOGGLE REGISTRY
 const audioToggle = document.getElementById('audio-toggle');
@@ -262,42 +291,72 @@ const cmdInput = document.getElementById('console-input');
 const cmdDisplay = document.getElementById('console-display');
 const secretGame = document.getElementById('secret-game-container');
 
+// NEW FEATURE: SHORTCUT MACRO INJECTOR CONTROL
+function injectMacro(command) {
+    cmdInput.value = command;
+    const event = new KeyboardEvent('keydown', { 'key': 'Enter' });
+    cmdInput.dispatchEvent(event);
+    executeTerminalAction(command);
+    cmdInput.value = '';
+}
+
 cmdInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         const inputStr = cmdInput.value.trim();
-        const inputLower = inputStr.toLowerCase();
-        printConsoleLine(`guest@muduli_sec:~$ ${inputStr}`, '#fff');
-        
-        if (inputLower === 'help') {
-            printConsoleLine("Kernel Subroutines Available:\n - 'about'   : Identity bios parameters.\n - 'skills'  : Core systems technical vectors.\n - 'nmap'    : Run interactive network scan loop diagnostics.\n - 'decrypt' : Initialize cipher override minigame dashboard.\n - 'cv'      : Inject download trigger link execution sequence.\n - 'clear'   : Flash console memory stack arrays.");
-        } else if (inputLower === 'about') {
-            printConsoleLine("Node: Soumyaranjan Muduli\nProfile: Certified Ethical Hacker / Full-Stack Engineer.\nLoc: Khordha, Odisha, India.");
-        } else if (inputLower === 'skills') {
-            printConsoleLine("Assets loaded: Penetration Testing, Source Code Auditing, Core Secure Architecture Logic.");
-        } else if (inputLower === 'clear') {
-            cmdDisplay.innerHTML = '';
-        } else if (inputLower === 'cv') {
-            printConsoleLine("Executing secure channel data download packet configuration...");
-            window.open('https://github.com/soumyaranjanmuduli234-pixel', '_blank');
-        } else if (inputLower === 'nmap') {
-            printConsoleLine("Running offensive target grid array port diagnostics...");
-            let count = 0;
-            let nmapInt = setInterval(() => {
-                printConsoleLine(`[PORT DIAGNOSTIC] Found active listener state on channel: ${Math.floor(Math.random()*1000)} -> [OPEN]`, '#00f2fe');
-                count++;
-                if(count > 5) clearInterval(nmapInt);
-            }, 300);
-        } else if (inputLower === 'decrypt') {
-            printConsoleLine("ALERT: Cryptographic Cipher Game Interface Target Initialized Natively Below!", "#ff9500");
-            secretGame.classList.remove('hidden-layer');
-            secretGame.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            printConsoleLine(`SHELL_ERROR: Vector packet string descriptor '${inputStr}' not structural.`, '#ff3b30');
+        if(inputStr !== '') {
+            executeTerminalAction(inputStr);
+            cmdInput.value = '';
         }
-        cmdInput.value = '';
-        cmdDisplay.scrollTop = cmdDisplay.scrollHeight;
     }
 });
+
+function executeTerminalAction(inputStr) {
+    const inputLower = inputStr.toLowerCase();
+    printConsoleLine(`guest@muduli_sec:~$ ${inputStr}`, '#fff');
+    
+    if (inputLower === 'help') {
+        printConsoleLine("Kernel Subroutines Available:\n - 'about'     : Identity bios parameters.\n - 'skills'    : Core systems technical vectors.\n - 'nmap'      : Run interactive network scan loop diagnostics.\n - 'decrypt'   : Initialize cipher override minigame dashboard.\n - 'gitstream' : Stream live dummy push trace array profiles.\n - 'cv'        : Inject download trigger link execution sequence.\n - 'clear'     : Flash console memory stack arrays.");
+    } else if (inputLower === 'about') {
+        printConsoleLine("Node: Soumyaranjan Muduli\nProfile: Certified Ethical Hacker / Full-Stack Engineer.\nLoc: Khordha, Odisha, India.");
+    } else if (inputLower === 'skills') {
+        printConsoleLine("Assets loaded: Penetration Testing, Source Code Auditing, Core Secure Architecture Logic.");
+    } else if (inputLower === 'clear') {
+        cmdDisplay.innerHTML = '';
+    } else if (inputLower === 'cv') {
+        printConsoleLine("Executing secure channel data download packet configuration...");
+        window.open('https://github.com/soumyaranjanmuduli234-pixel', '_blank');
+    } else if (inputLower === 'nmap') {
+        printConsoleLine("Running offensive target grid array port diagnostics...");
+        let count = 0;
+        let nmapInt = setInterval(() => {
+            printConsoleLine(`[PORT DIAGNOSTIC] Found active listener state on channel: ${Math.floor(Math.random()*1000)} -> [OPEN]`, '#00f2fe');
+            count++;
+            if(count > 5) clearInterval(nmapInt);
+        }, 300);
+    } else if (inputLower === 'decrypt') {
+        printConsoleLine("ALERT: Cryptographic Cipher Game Interface Target Initialized Natively Below!", "#ff9500");
+        secretGame.classList.remove('hidden-layer');
+        secretGame.scrollIntoView({ behavior: 'smooth' });
+    } else if (inputLower === 'gitstream') {
+        // NEW TERMINAL SCRIPT SUBROUTINE SIMULATION
+        printConsoleLine("Connecting to github.com/soumyaranjanmuduli234-pixel matrix...", "#00ff66");
+        let step = 0;
+        const gitMessages = [
+            "FETCH: remote structural sync origin master confirmed.",
+            "COMMIT [e4f810c]: Inject Advanced Threat Maps and Theme Toggle Matrix Structure.",
+            "PUSH: Data stream fragments deploying to repository branch architecture.",
+            "SYNC: GitHub Deployment pipeline active. 100% build complete."
+        ];
+        let gitInt = setInterval(() => {
+            printConsoleLine(`> ${gitMessages[step]}`, '#00f2fe');
+            step++;
+            if(step >= gitMessages.length) clearInterval(gitInt);
+        }, 500);
+    } else {
+        printConsoleLine(`SHELL_ERROR: Vector packet string descriptor '${inputStr}' not structural.`, '#ff3b30');
+    }
+    cmdDisplay.scrollTop = cmdDisplay.scrollHeight;
+}
 
 function printConsoleLine(text, color = '#00ff66') {
     let outputLine = document.createElement('div');

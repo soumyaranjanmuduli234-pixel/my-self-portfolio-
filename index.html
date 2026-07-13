@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,14 @@
 </head>
 <body>
 
+    <!-- FUTURISTIC TARGET CROSSHAIR & TRAILING DUST -->
     <div id="hacker-crosshair">
         <div class="ch-line horizontal"></div>
         <div class="ch-line vertical"></div>
     </div>
     <div id="particle-container"></div>
 
+    <!-- STARTING BOOT TERMINAL & INTERRUPT SYSTEM -->
     <div id="terminal-loader">
         <div class="terminal-header">
             <span class="dot red"></span>
@@ -25,6 +27,7 @@
         </div>
         <div class="terminal-body" id="boot-logs"></div>
 
+        <!-- FAKE CORRUPTION ALARM OVERLAY -->
         <div id="fake-breach-overlay" class="hidden-layer">
             <div class="alert-box">
                 <div class="alert-icon"><i class="fas fa-triangle-exclamation"></i></div>
@@ -36,12 +39,14 @@
         </div>
     </div>
 
+    <!-- LIVE AUDIO PIPELINES -->
     <audio id="cyber-ambient" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
     <audio id="alarm-buzzer" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg"></audio>
 
     <div class="scanlines"></div>
     <canvas id="cyber-canvas"></canvas>
 
+    <!-- MAIN INTERACTIVE ARCHITECTURE -->
     <div id="main-content" class="hidden">
         
         <header>
@@ -55,10 +60,14 @@
                 <a href="#credentials">// vault</a>
                 <a href="#contact">// transmission</a>
             </nav>
-            <div id="audio-toggle" class="audio-node active"><i class="fas fa-volume-high"></i> AUDIO: ON</div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="control-btn" title="Toggle System Theme"><i class="fas fa-moon"></i></button>
+                <div id="audio-toggle" class="audio-node active"><i class="fas fa-volume-high"></i> AUDIO: ON</div>
+            </div>
             <div class="toggle-menu" id="menu-btn"><i class="fas fa-bars"></i></div>
         </header>
 
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
                 <div class="status-tag"><span class="blink">●</span> SECURITY STATUS: HARDENED</div>
@@ -89,6 +98,7 @@
             </div>
         </section>
 
+        <!-- Identity Section -->
         <section id="about" class="about">
             <h2 class="cyber-heading"><span>01.</span> NODE_IDENTITY</h2>
             <div class="about-grid">
@@ -105,6 +115,7 @@
             </div>
         </section>
 
+        <!-- Skills Section -->
         <section id="skills" class="skills">
             <h2 class="cyber-heading"><span>02.</span> CORE_ASSETS & SKILLS_RADAR</h2>
             <div class="skills-grid">
@@ -126,11 +137,11 @@
                             <polygon points="100,50 151,87 131,145 69,145 49,87" class="grid-ring"/>
                             <polygon points="100,80 125,99 115,125 85,125 75,99" class="grid-ring"/>
                             <polygon points="100,30 170,75 140,155 60,140 35,75" class="radar-data"/>
-                            <text x="100" y="15" text-anchor="middle">SEC</text>
-                            <text x="185" y="75" text-anchor="start">WEB</text>
-                            <text x="155" y="180" text-anchor="middle">API</text>
-                            <text x="45" y="180" text-anchor="middle">DB</text>
-                            <text x="15" y="75" text-anchor="end">REVERSING</text>
+                            <text x="100" y="15" text-anchor="middle" class="radar-lbl">SEC</text>
+                            <text x="185" y="75" text-anchor="start" class="radar-lbl">WEB</text>
+                            <text x="155" y="180" text-anchor="middle" class="radar-lbl">API</text>
+                            <text x="45" y="180" text-anchor="middle" class="radar-lbl">DB</text>
+                            <text x="15" y="75" text-anchor="end" class="radar-lbl">REVERSING</text>
                         </svg>
                     </div>
                 </div>
@@ -147,6 +158,7 @@
             </div>
         </section>
 
+        <!-- LIVE ATTACK THREAT SIMULATOR MAP -->
         <section id="threat-map-section" class="threat-map-section">
             <h2 class="cyber-heading"><span>03.</span> LIVE_CYBER_THREAT_MAP (SIMULATION)</h2>
             <div class="map-wrapper">
@@ -158,6 +170,7 @@
             </div>
         </section>
 
+        <!-- SHELL INTERACTIVE MODULES + FIREWALL STREAM LOGS -->
         <section id="terminal-section" class="terminal-section">
             <h2 class="cyber-heading"><span>04.</span> ADVANCED_SHELL_CONSOLE</h2>
             
@@ -170,8 +183,17 @@
                         <span class="console-txt">live_shell@muduli_sec:~</span>
                     </div>
                     <div class="console-output" id="console-display">
-                        <div>Type <span class="text-green">'help'</span> to execute diagnostic mapping protocols. Try <span class="text-green">'nmap'</span> or <span class="text-green">'decrypt'</span>.</div>
+                        <div>Type <span class="text-green">'help'</span> to execute diagnostic mapping protocols. Try clicking the macro inject shortcuts below.</div>
                     </div>
+                    
+                    <!-- NEW MACRO SHORTCUT BUTTONS -->
+                    <div class="terminal-macros">
+                        <button onclick="injectMacro('help')">_help</button>
+                        <button onclick="injectMacro('nmap')">_nmap_scan</button>
+                        <button onclick="injectMacro('decrypt')">_decrypt_game</button>
+                        <button onclick="injectMacro('gitstream')">_git_stream</button>
+                    </div>
+
                     <div class="console-input-row">
                         <span class="prompt">guest@muduli_sec:~$</span>
                         <input type="text" id="console-input" autocomplete="off">
@@ -184,6 +206,7 @@
                 </div>
             </div>
 
+            <!-- SECRET INTERACTIVE EASTER EGG container -->
             <div id="secret-game-container" class="hidden-layer">
                 <div class="game-box">
                     <h3><i class="fas fa-key"></i> CRYPTOGRAPHIC DECIPHER MODULE ENCRYPTED</h3>
@@ -196,6 +219,7 @@
             </div>
         </section>
 
+        <!-- SECURE CERTIFICATE STORAGE FRAME -->
         <section id="credentials" class="credentials">
             <h2 class="cyber-heading"><span>05.</span> SECURE_VAULT</h2>
             <div class="cred-container">
@@ -210,6 +234,7 @@
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="contact">
             <h2 class="cyber-heading"><span>06.</span> SECURE_TRANSMISSION</h2>
             <div class="contact-split">
