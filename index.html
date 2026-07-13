@@ -9,14 +9,12 @@
 </head>
 <body>
 
-    <!-- FUTURISTIC TARGET CROSSHAIR & TRAILING DUST -->
     <div id="hacker-crosshair">
         <div class="ch-line horizontal"></div>
         <div class="ch-line vertical"></div>
     </div>
     <div id="particle-container"></div>
 
-    <!-- STARTING BOOT TERMINAL & INTERRUPT SYSTEM -->
     <div id="terminal-loader">
         <div class="terminal-header">
             <span class="dot red"></span>
@@ -27,7 +25,6 @@
         </div>
         <div class="terminal-body" id="boot-logs"></div>
 
-        <!-- FAKE CORRUPTION ALARM OVERLAY -->
         <div id="fake-breach-overlay" class="hidden-layer">
             <div class="alert-box">
                 <div class="alert-icon"><i class="fas fa-triangle-exclamation"></i></div>
@@ -39,14 +36,15 @@
         </div>
     </div>
 
-    <!-- LIVE AUDIO PIPELINES -->
     <audio id="cyber-ambient" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
     <audio id="alarm-buzzer" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg"></audio>
+    <audio id="sfx-keypress" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav"></audio>
+    <audio id="sfx-granted" src="https://assets.mixkit.co/active_storage/sfx/951/951-84.wav"></audio>
+    <audio id="sfx-denied" src="https://assets.mixkit.co/active_storage/sfx/993/993-84.wav"></audio>
 
     <div class="scanlines"></div>
     <canvas id="cyber-canvas"></canvas>
 
-    <!-- MAIN INTERACTIVE ARCHITECTURE -->
     <div id="main-content" class="hidden">
         
         <header>
@@ -67,7 +65,6 @@
             <div class="toggle-menu" id="menu-btn"><i class="fas fa-bars"></i></div>
         </header>
 
-        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
                 <div class="status-tag"><span class="blink">●</span> SECURITY STATUS: HARDENED</div>
@@ -98,7 +95,6 @@
             </div>
         </section>
 
-        <!-- Identity Section -->
         <section id="about" class="about">
             <h2 class="cyber-heading"><span>01.</span> NODE_IDENTITY</h2>
             <div class="about-grid">
@@ -115,7 +111,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills" class="skills">
             <h2 class="cyber-heading"><span>02.</span> CORE_ASSETS & SKILLS_RADAR</h2>
             <div class="skills-grid">
@@ -158,7 +153,6 @@
             </div>
         </section>
 
-        <!-- LIVE ATTACK THREAT SIMULATOR MAP -->
         <section id="threat-map-section" class="threat-map-section">
             <h2 class="cyber-heading"><span>03.</span> LIVE_CYBER_THREAT_MAP (SIMULATION)</h2>
             <div class="map-wrapper">
@@ -170,28 +164,26 @@
             </div>
         </section>
 
-        <!-- SHELL INTERACTIVE MODULES + FIREWALL STREAM LOGS -->
         <section id="terminal-section" class="terminal-section">
-            <h2 class="cyber-heading"><span>04.</span> ADVANCED_SHELL_CONSOLE</h2>
+            <h2 class="cyber-heading"><span>04.</span> DRAGGABLE_SHELL_CONSOLE</h2>
             
             <div class="terminal-layout-grid">
-                <div class="interactive-terminal">
-                    <div class="console-top">
+                <div class="interactive-terminal" id="draggable-terminal">
+                    <div class="console-top" id="terminal-drag-handle">
                         <span class="console-dot red"></span>
                         <span class="console-dot yellow"></span>
                         <span class="console-dot green"></span>
-                        <span class="console-txt">live_shell@muduli_sec:~</span>
+                        <span class="console-txt"><i class="fas fa-arrows-堅部"></i> drag_session@muduli_sec:~ (Click & Hold Top To Drag)</span>
                     </div>
                     <div class="console-output" id="console-display">
-                        <div>Type <span class="text-green">'help'</span> to execute diagnostic mapping protocols. Try clicking the macro inject shortcuts below.</div>
+                        <div>Type <span class="text-green">'help'</span> to execute commands. Arrow Keys $(\uparrow / \downarrow)$ fetch history layers.</div>
                     </div>
                     
-                    <!-- NEW MACRO SHORTCUT BUTTONS -->
                     <div class="terminal-macros">
                         <button onclick="injectMacro('help')">_help</button>
-                        <button onclick="injectMacro('nmap')">_nmap_scan</button>
-                        <button onclick="injectMacro('decrypt')">_decrypt_game</button>
-                        <button onclick="injectMacro('gitstream')">_git_stream</button>
+                        <button onclick="injectMacro('gitstream')">_git_stats</button>
+                        <button onclick="injectMacro('geoip 8.8.8.8')">_geo_ip</button>
+                        <button onclick="injectMacro('decrypt')">_decrypt</button>
                     </div>
 
                     <div class="console-input-row">
@@ -206,11 +198,10 @@
                 </div>
             </div>
 
-            <!-- SECRET INTERACTIVE EASTER EGG container -->
             <div id="secret-game-container" class="hidden-layer">
                 <div class="game-box">
                     <h3><i class="fas fa-key"></i> CRYPTOGRAPHIC DECIPHER MODULE ENCRYPTED</h3>
-                    <p>Decrypt the binary cipher sequence sequence string below to bypass internal security locks:</p>
+                    <p>Decrypt the binary cipher sequence string below to bypass internal security locks:</p>
                     <div class="cipher-string" id="target-cipher">MUDULI_SEC_2026</div>
                     <input type="text" id="game-guess-input" placeholder="Enter plain text code key...">
                     <button class="btn" onclick="checkSecretCipherKey()">Verify Hash Override</button>
@@ -219,7 +210,6 @@
             </div>
         </section>
 
-        <!-- SECURE CERTIFICATE STORAGE FRAME -->
         <section id="credentials" class="credentials">
             <h2 class="cyber-heading"><span>05.</span> SECURE_VAULT</h2>
             <div class="cred-container">
@@ -234,7 +224,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="contact">
             <h2 class="cyber-heading"><span>06.</span> SECURE_TRANSMISSION</h2>
             <div class="contact-split">

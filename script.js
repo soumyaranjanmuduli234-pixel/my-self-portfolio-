@@ -7,6 +7,9 @@ document.onkeydown = function(e) {
        (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
 };
 
+// GLOBAL GITHUB CONFIGURATION - PLACE YOUR CLASSIC TOKEN HERE
+const GITHUB_TOKEN = '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'; 
+
 // 2. REVOLUTIONARY TARGET CROSSHAIR & MATRIX PARTICLES
 const crosshair = document.getElementById('hacker-crosshair');
 const particleContainer = document.getElementById('particle-container');
@@ -32,7 +35,7 @@ function createMatrixParticle(x, y) {
     setTimeout(() => { p.remove(); }, 450);
 }
 
-// 3. CORE PRELOADER ENGINE + HARDENED SOUND AUTOPLAY BYPASS
+// 3. CORE PRELOADER ENGINE + SOUND SYSTEM INTEGRATION
 const bootLogsContainer = document.getElementById('boot-logs');
 const preloader = document.getElementById('terminal-loader');
 const mainContent = document.getElementById('main-content');
@@ -42,6 +45,9 @@ const progressFill = document.querySelector('.progress-bar-fill');
 
 const ambientSound = document.getElementById('cyber-ambient');
 const buzzerSound = document.getElementById('alarm-buzzer');
+const sfxKey = document.getElementById('sfx-keypress');
+const sfxGranted = document.getElementById('sfx-granted');
+const sfxDenied = document.getElementById('sfx-denied');
 
 const initialLogs = [
     "SYS: Initializing structural system network mapping loops...",
@@ -69,6 +75,11 @@ function forcePlayAudio() {
 }
 window.addEventListener('click', forcePlayAudio);
 window.addEventListener('keydown', forcePlayAudio);
+
+function playSfx(audioNode) {
+    audioNode.currentTime = 0;
+    audioNode.play().catch(() => {});
+}
 
 function runStandardBoot() {
     if (logIndex < initialLogs.length) {
@@ -126,42 +137,68 @@ function runHyperSpeedNmapScan(frameCount) {
                 triggerMetricsCounter();
                 initThreatMap();
                 startFirewallStreaming();
-                initThemeEngine(); // Active theme state compiler
+                initThemeEngine();
+                initDraggableTerminal(); // Launch drag pipeline engine
             }, 800);
         }, 500);
     }
 }
 window.addEventListener('DOMContentLoaded', runStandardBoot);
 
-// NEW FEATURE: DARK / LIGHT ENGINE CONTROLLER
 function initThemeEngine() {
     const themeBtn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('muduli-sys-theme') || 'dark';
-    
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
     themeBtn.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
         document.documentElement.setAttribute('data-theme', targetTheme);
         localStorage.setItem('muduli-sys-theme', targetTheme);
         updateThemeIcon(targetTheme);
-        printConsoleLine(`SYSTEM: Core graphical environment toggled to [${targetTheme.toUpperCase()}_MODE]`, '#00f2fe');
+        printConsoleLine(`SYSTEM: Core environment toggled to [${targetTheme.toUpperCase()}_MODE]`, '#00f2fe');
     });
 }
 
 function updateThemeIcon(theme) {
     const icon = document.querySelector('#theme-toggle i');
-    if (theme === 'light') {
-        icon.className = 'fas fa-sun';
-    } else {
-        icon.className = 'fas fa-moon';
+    icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+// 4. FEATURE INTERACTION: DRAGGABLE DESKTOP SHELL LOGIC
+function initDraggableTerminal() {
+    const term = document.getElementById('draggable-terminal');
+    const handle = document.getElementById('terminal-drag-handle');
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    handle.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        term.style.top = (term.offsetTop - pos2) + "px";
+        term.style.left = (term.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
     }
 }
 
-// 4. AUDIO TOGGLE REGISTRY
+// 5. AUDIO TOGGLE REGISTRY
 const audioToggle = document.getElementById('audio-toggle');
 audioToggle.addEventListener('click', () => {
     if (ambientSound.paused) {
@@ -175,21 +212,15 @@ audioToggle.addEventListener('click', () => {
     }
 });
 
-// 5. MOBILE MENU INTERFACING
+// 6. MOBILE MENU INTERFACING
 const menuBtn = document.getElementById('menu-btn');
 const navMenu = document.getElementById('nav-menu');
 menuBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     menuBtn.innerHTML = navMenu.classList.contains('active') ? `<i class="fas fa-xmark"></i>` : `<i class="fas fa-bars"></i>`;
 });
-document.querySelectorAll('#nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuBtn.innerHTML = `<i class="fas fa-bars"></i>`;
-    });
-});
 
-// 6. METRICS INTERACTIVE INCREMENTS
+// 7. METRICS INCREMENTS
 function triggerMetricsCounter() {
     document.querySelectorAll('.metric-val').forEach(counter => {
         counter.innerText = '0';
@@ -200,27 +231,24 @@ function triggerMetricsCounter() {
             if (current < target) {
                 counter.innerText = `${Math.ceil(current + step)}`;
                 setTimeout(updateCounter, 25);
-            } else {
-                counter.innerText = target;
-            }
+            } else { counter.innerText = target; }
         };
         updateCounter();
     });
 }
 
-// 7. ADVANCED FEATURE: LIVE CYBER THREAT GLOBAL SIMULATOR MAP
+// 8. LIVE CYBER THREAT MAP
 function initThreatMap() {
     const canvasMap = document.getElementById('threat-map-canvas');
     const ctxMap = canvasMap.getContext('2d');
     const feed = document.getElementById('live-threat-feed');
-    
     canvasMap.width = canvasMap.parentElement.clientWidth;
     canvasMap.height = 380;
 
     const countries = [
         { name: "USA Node", x: 120, y: 130 }, { name: "Germany Mainframe", x: 420, y: 100 },
         { name: "China Sector", x: 620, y: 140 }, { name: "India Central", x: 570, y: 180 },
-        { name: "Russia Storage", x: 510, y: 80 }, { name: "Brazil Proxy", x: 250, y: 270 }
+        { name: "Russia Storage", x: 510, y: 80 }
     ];
 
     function drawMapBackground() {
@@ -228,10 +256,8 @@ function initThreatMap() {
         ctxMap.fillStyle = "rgba(0, 255, 102, 0.15)";
         countries.forEach(c => {
             ctxMap.beginPath(); ctxMap.arc(c.x, c.y, 6, 0, Math.PI * 2); ctxMap.fill();
-            ctxMap.fillStyle = "rgba(0,242,254,0.4)";
-            ctxMap.font = "9px monospace";
+            ctxMap.fillStyle = "rgba(0,242,254,0.4)"; ctxMap.font = "9px monospace";
             ctxMap.fillText(c.name, c.x + 10, c.y + 3);
-            ctxMap.fillStyle = "rgba(0, 255, 102, 0.15)";
         });
     }
 
@@ -243,7 +269,7 @@ function initThreatMap() {
         if (src !== dst) {
             attacks.push({ src, dst, progress: 0 });
             let log = document.createElement('div');
-            log.innerHTML = `<span style="color:#ff3b30;">[ATTACK]</span> Vectors deploying from ${src.name} -> target endpoint ${dst.name}`;
+            log.innerHTML = `<span style="color:#ff3b30;">[ATTACK]</span> Vector trace: ${src.name} -> ${dst.name}`;
             feed.appendChild(log);
             if(feed.children.length > 4) feed.removeChild(feed.children[0]);
         }
@@ -253,107 +279,131 @@ function initThreatMap() {
         drawMapBackground();
         attacks.forEach(a => {
             a.progress += 0.02;
-            let currentX = a.src.x + (a.dst.x - a.src.x) * a.progress;
-            let currentY = a.src.y + (a.dst.y - a.src.y) * a.progress;
-            
-            ctxMap.strokeStyle = "#ff3b30"; ctxMap.lineWidth = 1.5;
-            ctxMap.beginPath(); ctxMap.moveTo(a.src.x, a.src.y); ctxMap.lineTo(currentX, currentY); ctxMap.stroke();
-            
-            ctxMap.fillStyle = "#00f2fe"; ctxMap.beginPath();
-            ctxMap.arc(currentX, currentY, 4, 0, Math.PI * 2); ctxMap.fill();
+            let cx = a.src.x + (a.dst.x - a.src.x) * a.progress;
+            let cy = a.src.y + (a.dst.y - a.src.y) * a.progress;
+            ctxMap.strokeStyle = "#ff3b30"; ctxMap.beginPath(); ctxMap.moveTo(a.src.x, a.src.y); ctxMap.lineTo(cx, cy); ctxMap.stroke();
+            ctxMap.fillStyle = "#00f2fe"; ctxMap.beginPath(); ctxMap.arc(cx, cy, 4, 0, Math.PI * 2); ctxMap.fill();
         });
         requestAnimationFrame(animateMap);
     }
     animateMap();
 }
 
-// 8. ADVANCED FEATURE: WALL FIREWALL LIVE REAL-TIME METRICS SCRIPTS
 function startFirewallStreaming() {
     const fwLogs = document.getElementById('live-firewall-logs');
-    const attackTypes = ["SQL Injection block", "XSS Payload trace isolated", "Brute Force structural drop", "Malformed API token dump rejected"];
-    
+    const attackTypes = ["SQL Injection block", "XSS Payload trace isolated", "Brute Force dropped"];
     setInterval(() => {
         let ip = `103.45.${Math.floor(Math.random()*254)}.${Math.floor(Math.random()*254)}`;
         let alertText = attackTypes[Math.floor(Math.random() * attackTypes.length)];
         let div = document.createElement('div');
         div.className = 'fw-alert';
-        div.innerHTML = `<span style="color:#00f2fe;">[FW_BLOCK]</span> ${alertText} from <span style="color:#00ff66;">${ip}</span> on port ${Math.random() > 0.5 ? 443 : 80}`;
+        div.innerHTML = `<span style="color:#00f2fe;">[FW_BLOCK]</span> ${alertText} from <span style="color:#00ff66;">${ip}</span>`;
         fwLogs.appendChild(div);
-        
-        if (fwLogs.children.length > 12) {
-            fwLogs.removeChild(fwLogs.children[0]);
-        }
+        if (fwLogs.children.length > 12) fwLogs.removeChild(fwLogs.children[0]);
     }, 1600);
 }
 
-// 9. HIGHLY ADVANCED INTERACTIVE TERMINAL EMULATOR COMMANDS BLOCK
+// 9. HIGHLY ADVANCED FEATURE CORE: COMMAND BUFFER HISTORY & API TERMINAL PIPELINES
 const cmdInput = document.getElementById('console-input');
 const cmdDisplay = document.getElementById('console-display');
 const secretGame = document.getElementById('secret-game-container');
 
-// NEW FEATURE: SHORTCUT MACRO INJECTOR CONTROL
+let commandHistory = [];
+let historyIndex = -1;
+
 function injectMacro(command) {
-    cmdInput.value = command;
-    const event = new KeyboardEvent('keydown', { 'key': 'Enter' });
-    cmdInput.dispatchEvent(event);
     executeTerminalAction(command);
-    cmdInput.value = '';
 }
 
 cmdInput.addEventListener('keydown', function(e) {
+    playSfx(sfxKey); // Audio Board keypress mapping
+
     if (e.key === 'Enter') {
         const inputStr = cmdInput.value.trim();
-        if(inputStr !== '') {
+        if (inputStr !== '') {
+            commandHistory.push(inputStr);
+            historyIndex = commandHistory.length;
             executeTerminalAction(inputStr);
+            cmdInput.value = '';
+        }
+    } 
+    // BUFFER HISTORY NAVIGATION ARRAYS (Up/Down Arrows)
+    else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (historyIndex > 0) {
+            historyIndex--;
+            cmdInput.value = commandHistory[historyIndex];
+        }
+    } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            cmdInput.value = commandHistory[historyIndex];
+        } else {
+            historyIndex = commandHistory.length;
             cmdInput.value = '';
         }
     }
 });
 
-function executeTerminalAction(inputStr) {
-    const inputLower = inputStr.toLowerCase();
+async function executeTerminalAction(inputStr) {
+    const parts = inputStr.split(' ');
+    const command = parts[0].toLowerCase();
+    const argument = parts.slice(1).join(' ');
+    
     printConsoleLine(`guest@muduli_sec:~$ ${inputStr}`, '#fff');
     
-    if (inputLower === 'help') {
-        printConsoleLine("Kernel Subroutines Available:\n - 'about'     : Identity bios parameters.\n - 'skills'    : Core systems technical vectors.\n - 'nmap'      : Run interactive network scan loop diagnostics.\n - 'decrypt'   : Initialize cipher override minigame dashboard.\n - 'gitstream' : Stream live dummy push trace array profiles.\n - 'cv'        : Inject download trigger link execution sequence.\n - 'clear'     : Flash console memory stack arrays.");
-    } else if (inputLower === 'about') {
-        printConsoleLine("Node: Soumyaranjan Muduli\nProfile: Certified Ethical Hacker / Full-Stack Engineer.\nLoc: Khordha, Odisha, India.");
-    } else if (inputLower === 'skills') {
-        printConsoleLine("Assets loaded: Penetration Testing, Source Code Auditing, Core Secure Architecture Logic.");
-    } else if (inputLower === 'clear') {
+    if (command === 'help') {
+        printConsoleLine("Kernel Subroutines Available:\n - 'about'        : Identity bios parameters.\n - 'skills'       : Core assets vectors.\n - 'gitstream'    : Real-Time GitHub API Live Analytics stream.\n - 'geoip [IP]'   : Dynamic Real Network Tracking IP Lookup utility.\n - 'nmap'         : Structural security scanner loops.\n - 'decrypt'      : Password cipher module block.\n - 'clear'        : Clear terminal frame.");
+    } else if (command === 'about') {
+        printConsoleLine("Node: Soumyaranjan Muduli\nProfile: Certified Ethical Hacker / Full-Stack Engineer.");
+    } else if (command === 'skills') {
+        printConsoleLine("Assets loaded: Penetration Testing, Source Code Auditing, API Hardening.");
+    } else if (command === 'clear') {
         cmdDisplay.innerHTML = '';
-    } else if (inputLower === 'cv') {
-        printConsoleLine("Executing secure channel data download packet configuration...");
-        window.open('https://github.com/soumyaranjanmuduli234-pixel', '_blank');
-    } else if (inputLower === 'nmap') {
-        printConsoleLine("Running offensive target grid array port diagnostics...");
-        let count = 0;
-        let nmapInt = setInterval(() => {
-            printConsoleLine(`[PORT DIAGNOSTIC] Found active listener state on channel: ${Math.floor(Math.random()*1000)} -> [OPEN]`, '#00f2fe');
-            count++;
-            if(count > 5) clearInterval(nmapInt);
-        }, 300);
-    } else if (inputLower === 'decrypt') {
-        printConsoleLine("ALERT: Cryptographic Cipher Game Interface Target Initialized Natively Below!", "#ff9500");
+    } else if (command === 'nmap') {
+        printConsoleLine("Scanning default internal block gates...");
+        for(let j=0; j<4; j++) {
+            printConsoleLine(`-> Service found on Port ${Math.floor(Math.random()*8000)}: ACTIVE`, '#00f2fe');
+        }
+    } else if (command === 'decrypt') {
         secretGame.classList.remove('hidden-layer');
         secretGame.scrollIntoView({ behavior: 'smooth' });
-    } else if (inputLower === 'gitstream') {
-        // NEW TERMINAL SCRIPT SUBROUTINE SIMULATION
-        printConsoleLine("Connecting to github.com/soumyaranjanmuduli234-pixel matrix...", "#00ff66");
-        let step = 0;
-        const gitMessages = [
-            "FETCH: remote structural sync origin master confirmed.",
-            "COMMIT [e4f810c]: Inject Advanced Threat Maps and Theme Toggle Matrix Structure.",
-            "PUSH: Data stream fragments deploying to repository branch architecture.",
-            "SYNC: GitHub Deployment pipeline active. 100% build complete."
-        ];
-        let gitInt = setInterval(() => {
-            printConsoleLine(`> ${gitMessages[step]}`, '#00f2fe');
-            step++;
-            if(step >= gitMessages.length) clearInterval(gitInt);
-        }, 500);
+    } 
+    // FEATURE INTEGRATION A: REAL-TIME GITHUB API STREAMING OVER SECURE NETWORK
+    else if (command === 'gitstream') {
+        printConsoleLine("Contacting secure production gateway api.github.com...", "#00ff66");
+        try {
+            const headers = GITHUB_TOKEN !== 'YAHAN_APNA_TOKEN_DALO' ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {};
+            const response = await fetch('https://api.github.com/users/soumyaranjanmuduli234-pixel', { headers });
+            
+            if (!response.ok) throw new Error("Connection failed or rate-limited.");
+            const data = await response.json();
+            
+            printConsoleLine(`>>> USER: ${data.login}\n>>> PUBLIC REPOS: ${data.public_repos}\n>>> FOLLOWERS: ${data.followers}\n>>> PROFILE SYNC: ${data.updated_at}\nSTATUS: Core repository sync validation metrics compiled successfully.`, '#00f2fe');
+        } catch (err) {
+            printConsoleLine("FETCH_ERROR: Authorization layer missing or Rate limited. Inject a real token string inside script.js architecture variables.", "#ff3b30");
+        }
+    } 
+    // FEATURE INTEGRATION B: LIVE REAL NETWORK GEOLOCATION IP LOOKUP UTILITY
+    else if (command === 'geoip') {
+        if (!argument) {
+            printConsoleLine("USAGE_ERROR: Target IP argument string array sequence missing. Format: geoip 8.8.8.8", "#ff3b30");
+            return;
+        }
+        printConsoleLine(`Routing network lookup queries for tracking node [${argument}] via api pipeline...`, "#00ff66");
+        try {
+            const res = await fetch(`https://ipapi.co/${argument}/json/`);
+            if (!res.ok) throw new Error();
+            const ipData = await res.json();
+            if(ipData.error) { throw new Error(ipData.reason); }
+            
+            printConsoleLine(`>>> TARGET IP : ${ipData.ip}\n>>> ORG/ISP   : ${ipData.org}\n>>> GEOLOC    : ${ipData.city}, ${ipData.region}, ${ipData.country_name}\n>>> LAT/LONG  : ${ipData.latitude} / ${ipData.longitude}`, "#00f2fe");
+        } catch(e) {
+            printConsoleLine("NETWORK_ERROR: Data routing endpoint failed or invalid target IP trace sequence.", "#ff3b30");
+        }
     } else {
-        printConsoleLine(`SHELL_ERROR: Vector packet string descriptor '${inputStr}' not structural.`, '#ff3b30');
+        printConsoleLine(`SHELL_ERROR: Command vector '${command}' not structural.`, '#ff3b30');
     }
     cmdDisplay.scrollTop = cmdDisplay.scrollHeight;
 }
@@ -366,21 +416,22 @@ function printConsoleLine(text, color = '#00ff66') {
     cmdDisplay.appendChild(outputLine);
 }
 
-// 10. SECRET GAME CONTROLLER SYSTEM
+// 10. SECRET GAME SOUND MATRIX
 function checkSecretCipherKey() {
     const guess = document.getElementById('game-guess-input').value.trim();
     const out = document.getElementById('game-status-output');
     if (guess === "MUDULI_SEC_2026") {
+        playSfx(sfxGranted);
         out.style.color = "#00ff66";
         out.innerText = "ACCESS GRANTED. Overriding data streams... Master Vault Key Released: [FLAG: SECURE_CORE_UNLOCKED]";
-        printConsoleLine("SUCCESS: Hidden cipher game solved. Priority flags logged.", "#00ff66");
     } else {
+        playSfx(sfxDenied);
         out.style.color = "#ff3b30";
-        out.innerText = "INTEGRITY FAULT: Hash value check validation mismatched. Try again.";
+        out.innerText = "INTEGRITY FAULT: Hash value validation mismatched. Target Denied.";
     }
 }
 
-// 11. DYNAMIC CONTACT INJECTION HANDLING
+// 11. DYNAMIC CONTACT INJECTION
 const form = document.getElementById('cyber-contact-form');
 const formOut = document.getElementById('form-terminal-output');
 form.addEventListener('submit', function(e) {
@@ -388,31 +439,21 @@ form.addEventListener('submit', function(e) {
     form.style.display = 'none';
     formOut.className = 'form-terminal-active';
     formOut.innerHTML = `> Initializing data packets...<br>`;
-    let logs = [
-        "> Establishing secure transport socket layer...",
-        `> Identity bits logged: ${document.getElementById('form-name').value}`,
-        `> STATUS: PACKET INJECTED SUCCESSFULLY INTO SERVER ROUTE.`
-    ];
+    let logs = [ "> Establishing secure transport socket layer...", `> STATUS: PACKET INJECTED SUCCESSFULLY.` ];
     let i = 0;
     function printLogs() {
-        if(i < logs.length) {
-            formOut.innerHTML += logs[i] + "<br>"; i++;
-            setTimeout(printLogs, 600);
-        }
+        if(i < logs.length) { formOut.innerHTML += logs[i] + "<br>"; i++; setTimeout(printLogs, 600); }
     }
     setTimeout(printLogs, 200);
 });
 
-// 12. MATRIX TRIPLE-MODE MATRIX RENDERING CANVAS
+// 12. CANVAS CYBER MATRIX BACKGROUND
 const canvas = document.getElementById('cyber-canvas');
 const ctx = canvas.getContext('2d');
 const stateIndicator = document.getElementById('bg-state');
 let currentMode = 0;
 const modeNames = ["MATRIX", "CYBER_GRID", "BINARY_FLOW"];
-setInterval(() => {
-    currentMode = (currentMode + 1) % 3;
-    stateIndicator.innerText = modeNames[currentMode];
-}, 20000);
+setInterval(() => { currentMode = (currentMode + 1) % 3; stateIndicator.innerText = modeNames[currentMode]; }, 20000);
 
 function initCyberEngine() {
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
