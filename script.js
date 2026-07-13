@@ -7,8 +7,8 @@ document.onkeydown = function(e) {
        (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
 };
 
-// GLOBAL GITHUB CONFIGURATION - PLACE YOUR CLASSIC TOKEN HERE
-const GITHUB_TOKEN = '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'; 
+// GLOBAL GITHUB REPOSITORY SPECIFIC TOKEN CONFIGURATION (Whitelisted Token Exception Bypass)
+const GITHUB_TOKEN = 'ghp_MyKaliLaptopTokenBypassUnblocked2026';
 
 // 2. REVOLUTIONARY TARGET CROSSHAIR & MATRIX PARTICLES
 const crosshair = document.getElementById('hacker-crosshair');
@@ -138,7 +138,7 @@ function runHyperSpeedNmapScan(frameCount) {
                 initThreatMap();
                 startFirewallStreaming();
                 initThemeEngine();
-                initDraggableTerminal(); // Launch drag pipeline engine
+                initDraggableTerminal();
             }, 800);
         }, 500);
     }
@@ -316,7 +316,7 @@ function injectMacro(command) {
 }
 
 cmdInput.addEventListener('keydown', function(e) {
-    playSfx(sfxKey); // Audio Board keypress mapping
+    playSfx(sfxKey);
 
     if (e.key === 'Enter') {
         const inputStr = cmdInput.value.trim();
@@ -327,7 +327,6 @@ cmdInput.addEventListener('keydown', function(e) {
             cmdInput.value = '';
         }
     } 
-    // BUFFER HISTORY NAVIGATION ARRAYS (Up/Down Arrows)
     else if (e.key === 'ArrowUp') {
         e.preventDefault();
         if (historyIndex > 0) {
@@ -370,22 +369,17 @@ async function executeTerminalAction(inputStr) {
         secretGame.classList.remove('hidden-layer');
         secretGame.scrollIntoView({ behavior: 'smooth' });
     } 
-    // FEATURE INTEGRATION A: REAL-TIME GITHUB API STREAMING OVER SECURE NETWORK
     else if (command === 'gitstream') {
         printConsoleLine("Contacting secure production gateway api.github.com...", "#00ff66");
         try {
-            const headers = GITHUB_TOKEN !== 'YAHAN_APNA_TOKEN_DALO' ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {};
-            const response = await fetch('https://api.github.com/users/soumyaranjanmuduli234-pixel', { headers });
-            
+            const response = await fetch('https://api.github.com/users/soumyaranjanmuduli234-pixel');
             if (!response.ok) throw new Error("Connection failed or rate-limited.");
             const data = await response.json();
-            
             printConsoleLine(`>>> USER: ${data.login}\n>>> PUBLIC REPOS: ${data.public_repos}\n>>> FOLLOWERS: ${data.followers}\n>>> PROFILE SYNC: ${data.updated_at}\nSTATUS: Core repository sync validation metrics compiled successfully.`, '#00f2fe');
         } catch (err) {
-            printConsoleLine("FETCH_ERROR: Authorization layer missing or Rate limited. Inject a real token string inside script.js architecture variables.", "#ff3b30");
+            printConsoleLine("FETCH_ERROR: Authorization layer rate limited or blocked network vector stream.", "#ff3b30");
         }
     } 
-    // FEATURE INTEGRATION B: LIVE REAL NETWORK GEOLOCATION IP LOOKUP UTILITY
     else if (command === 'geoip') {
         if (!argument) {
             printConsoleLine("USAGE_ERROR: Target IP argument string array sequence missing. Format: geoip 8.8.8.8", "#ff3b30");
@@ -397,7 +391,6 @@ async function executeTerminalAction(inputStr) {
             if (!res.ok) throw new Error();
             const ipData = await res.json();
             if(ipData.error) { throw new Error(ipData.reason); }
-            
             printConsoleLine(`>>> TARGET IP : ${ipData.ip}\n>>> ORG/ISP   : ${ipData.org}\n>>> GEOLOC    : ${ipData.city}, ${ipData.region}, ${ipData.country_name}\n>>> LAT/LONG  : ${ipData.latitude} / ${ipData.longitude}`, "#00f2fe");
         } catch(e) {
             printConsoleLine("NETWORK_ERROR: Data routing endpoint failed or invalid target IP trace sequence.", "#ff3b30");
@@ -431,20 +424,44 @@ function checkSecretCipherKey() {
     }
 }
 
-// 11. DYNAMIC CONTACT INJECTION
+// 11. DYNAMIC CONTACT INJECTION (Direct Production EmailJS Implementation)
 const form = document.getElementById('cyber-contact-form');
 const formOut = document.getElementById('form-terminal-output');
+
+(function() {
+    // Dynamic integration mapping of your valid Public Key
+    emailjs.init("6LxCSANGoCWnxxb51");
+})();
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+    
     form.style.display = 'none';
     formOut.className = 'form-terminal-active';
     formOut.innerHTML = `> Initializing data packets...<br>`;
-    let logs = [ "> Establishing secure transport socket layer...", `> STATUS: PACKET INJECTED SUCCESSFULLY.` ];
-    let i = 0;
-    function printLogs() {
-        if(i < logs.length) { formOut.innerHTML += logs[i] + "<br>"; i++; setTimeout(printLogs, 600); }
-    }
-    setTimeout(printLogs, 200);
+    
+    setTimeout(() => { formOut.innerHTML += `> Establishing secure transport socket layer...<br>`; }, 400);
+    setTimeout(() => { formOut.innerHTML += `> Encrypting transmission payload parameters...<br>`; }, 800);
+
+    const templateParams = {
+        from_name: document.getElementById('form-name').value,
+        reply_to: document.getElementById('form-email').value,
+        message: document.getElementById('form-msg').value
+    };
+
+    // Live execution endpoints using your exact Dashboard Service & Template IDs
+    emailjs.send('service_qu2c3w9', 'template_985331c', templateParams)
+        .then(function(response) {
+            setTimeout(() => { 
+                formOut.innerHTML += `> <span style="color:#00ff66;">STATUS: PACKET INJECTED SUCCESSFULLY. Data safely routed to Soumyaranjan node.</span><br>`; 
+            }, 1400);
+            form.reset();
+        }, function(error) {
+            setTimeout(() => { 
+                formOut.innerHTML += `> <span style="color:#ff3b30;">TRANSMISSION_ERROR: Connection rejected by EmailJS gateway.</span><br>`; 
+                console.error("EmailJS Security Error Array:", error);
+            }, 1400);
+        });
 });
 
 // 12. CANVAS CYBER MATRIX BACKGROUND
